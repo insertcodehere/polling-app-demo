@@ -1,0 +1,39 @@
+<mat-toolbar class="header-toolbar" color="primary">
+  <button *ngIf="isAuthenticated" mat-icon-button (click)="toggleSidenav()">
+    <mat-icon fontIcon="menu"></mat-icon>
+  </button>
+
+  <div class="logo-slot">
+    <img class="logo" src="/assets/logo.png" />
+  </div>
+
+  <theme-switch class="theme-switcher"></theme-switch>
+
+  <user-profile class="auth-slot"></user-profile>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    [opened]="sidenavOpened && isAuthenticated">
+    <mat-nav-list role="list">
+      <a mat-list-item routerLink="polls/search" routerLinkActive="active-link">
+        Search
+      </a>
+      <a mat-list-item routerLink="polls/list" routerLinkActive="active-link">
+        My Polls
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <div class="scroll-view">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-toolbar class="footer">
+  Powered by RedShift, made possible by Angular
+</mat-toolbar>
